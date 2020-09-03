@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>从零构建前端 Lint 工作流 | KuoJay Blog</title>
+    <meta name="description" content="">
+    <link rel="icon" href="/img/logo.jpeg">
+    
+    <link rel="preload" href="/assets/css/0.styles.ee3431e8.css" as="style"><link rel="preload" href="/assets/js/app.e45c2cda.js" as="script"><link rel="preload" href="/assets/js/66.0fb2160f.js" as="script"><link rel="prefetch" href="/assets/js/10.e8a644bc.js"><link rel="prefetch" href="/assets/js/11.f60f17d6.js"><link rel="prefetch" href="/assets/js/12.192d71d3.js"><link rel="prefetch" href="/assets/js/13.25830df2.js"><link rel="prefetch" href="/assets/js/14.1c3c2237.js"><link rel="prefetch" href="/assets/js/15.a3c4e20a.js"><link rel="prefetch" href="/assets/js/16.d2fb062f.js"><link rel="prefetch" href="/assets/js/17.4a6f1f2e.js"><link rel="prefetch" href="/assets/js/18.3dc22d52.js"><link rel="prefetch" href="/assets/js/19.33a0794e.js"><link rel="prefetch" href="/assets/js/2.28c6f05c.js"><link rel="prefetch" href="/assets/js/20.273b3d3f.js"><link rel="prefetch" href="/assets/js/21.5d275d6b.js"><link rel="prefetch" href="/assets/js/22.abf29d4a.js"><link rel="prefetch" href="/assets/js/23.e42ab9ec.js"><link rel="prefetch" href="/assets/js/24.6ebbb4ab.js"><link rel="prefetch" href="/assets/js/25.6aef6983.js"><link rel="prefetch" href="/assets/js/26.a932061a.js"><link rel="prefetch" href="/assets/js/27.ca61a882.js"><link rel="prefetch" href="/assets/js/28.0a812e81.js"><link rel="prefetch" href="/assets/js/29.b40d3df2.js"><link rel="prefetch" href="/assets/js/3.a09ff4a2.js"><link rel="prefetch" href="/assets/js/30.a157bcd6.js"><link rel="prefetch" href="/assets/js/31.1d3fb68f.js"><link rel="prefetch" href="/assets/js/32.bc2fd972.js"><link rel="prefetch" href="/assets/js/33.643b309e.js"><link rel="prefetch" href="/assets/js/34.0983f214.js"><link rel="prefetch" href="/assets/js/35.149986d5.js"><link rel="prefetch" href="/assets/js/36.788a3e7d.js"><link rel="prefetch" href="/assets/js/37.8c07f284.js"><link rel="prefetch" href="/assets/js/38.2866e17a.js"><link rel="prefetch" href="/assets/js/39.6d964a23.js"><link rel="prefetch" href="/assets/js/4.4bf77ba4.js"><link rel="prefetch" href="/assets/js/40.f4e1e42a.js"><link rel="prefetch" href="/assets/js/41.5d8f53cc.js"><link rel="prefetch" href="/assets/js/42.7686a08e.js"><link rel="prefetch" href="/assets/js/43.5d0f258a.js"><link rel="prefetch" href="/assets/js/44.8fbfd791.js"><link rel="prefetch" href="/assets/js/45.569e0950.js"><link rel="prefetch" href="/assets/js/46.8e344c69.js"><link rel="prefetch" href="/assets/js/47.153ab7de.js"><link rel="prefetch" href="/assets/js/48.fd6aca86.js"><link rel="prefetch" href="/assets/js/49.80e1ab43.js"><link rel="prefetch" href="/assets/js/5.6641b486.js"><link rel="prefetch" href="/assets/js/50.fc72a81a.js"><link rel="prefetch" href="/assets/js/51.33dd9604.js"><link rel="prefetch" href="/assets/js/52.7fd01621.js"><link rel="prefetch" href="/assets/js/53.33353c97.js"><link rel="prefetch" href="/assets/js/54.9fa2e3a3.js"><link rel="prefetch" href="/assets/js/55.62a1bda1.js"><link rel="prefetch" href="/assets/js/56.f9b94f2a.js"><link rel="prefetch" href="/assets/js/57.b4fb1f3d.js"><link rel="prefetch" href="/assets/js/58.338b49e8.js"><link rel="prefetch" href="/assets/js/59.ef3b5b73.js"><link rel="prefetch" href="/assets/js/6.f968c14b.js"><link rel="prefetch" href="/assets/js/60.3fdbde82.js"><link rel="prefetch" href="/assets/js/61.71670501.js"><link rel="prefetch" href="/assets/js/62.8085fc99.js"><link rel="prefetch" href="/assets/js/63.06451bdf.js"><link rel="prefetch" href="/assets/js/64.b5c56fb1.js"><link rel="prefetch" href="/assets/js/65.7245b999.js"><link rel="prefetch" href="/assets/js/67.7f3720af.js"><link rel="prefetch" href="/assets/js/68.b4e6df2b.js"><link rel="prefetch" href="/assets/js/69.c17e5a4d.js"><link rel="prefetch" href="/assets/js/7.9fb8d288.js"><link rel="prefetch" href="/assets/js/70.d01e45e2.js"><link rel="prefetch" href="/assets/js/71.59b20ff0.js"><link rel="prefetch" href="/assets/js/72.8755c342.js"><link rel="prefetch" href="/assets/js/73.1dbfddc4.js"><link rel="prefetch" href="/assets/js/74.b9d5f5e5.js"><link rel="prefetch" href="/assets/js/75.b3d00a1c.js"><link rel="prefetch" href="/assets/js/76.a314d24f.js"><link rel="prefetch" href="/assets/js/77.cd1d7149.js"><link rel="prefetch" href="/assets/js/78.9d37d951.js"><link rel="prefetch" href="/assets/js/79.bf5bdc05.js"><link rel="prefetch" href="/assets/js/8.444fccc9.js"><link rel="prefetch" href="/assets/js/80.3f0be298.js"><link rel="prefetch" href="/assets/js/81.617c7c41.js"><link rel="prefetch" href="/assets/js/82.61e9e0b4.js"><link rel="prefetch" href="/assets/js/83.a26764f0.js"><link rel="prefetch" href="/assets/js/84.db5e3248.js"><link rel="prefetch" href="/assets/js/85.83ac40b8.js"><link rel="prefetch" href="/assets/js/86.c0af6c1f.js"><link rel="prefetch" href="/assets/js/9.f4eb60f8.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.ee3431e8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/logo.jpeg" alt="KuoJay Blog" class="logo"> <span class="site-name can-hide">KuoJay Blog</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/timeLine/" class="nav-link">首页</a></div><div class="nav-item"><a href="/technology/" class="nav-link router-link-active">笔记</a></div><div class="nav-item"><a href="/tags/" class="nav-link">标签库</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/timeLine/" class="nav-link">首页</a></div><div class="nav-item"><a href="/technology/" class="nav-link router-link-active">笔记</a></div><div class="nav-item"><a href="/tags/" class="nav-link">标签库</a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>从零构建前端 Lint 工作流</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#lint-工作流" class="sidebar-link">Lint 工作流</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#选择性阅读" class="sidebar-link">选择性阅读</a></li><li class="sidebar-sub-header"><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#什么是代码检查" class="sidebar-link">什么是代码检查</a></li></ul></li><li><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#配置eslint" class="sidebar-link">配置ESLint</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#小试牛刀" class="sidebar-link">小试牛刀</a></li><li class="sidebar-sub-header"><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#配合-typescript" class="sidebar-link">配合 TypeScript</a></li><li class="sidebar-sub-header"><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#脚本命令检查整个项目" class="sidebar-link">脚本命令检查整个项目</a></li><li class="sidebar-sub-header"><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#推荐使用-alloyteam-的配置" class="sidebar-link">推荐使用 AlloyTeam 的配置</a></li></ul></li><li><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#vscode-集成-eslint-检查" class="sidebar-link">VSCode 集成 ESLint 检查</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#结合-prettier-使用" class="sidebar-link">结合 Prettier 使用</a></li><li class="sidebar-sub-header"><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#vscode-集成-prettier" class="sidebar-link">VSCode 集成 Prettier</a></li></ul></li><li><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#继续集成-stylelint" class="sidebar-link">继续集成 Stylelint</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#支持-scss" class="sidebar-link">支持 SCSS</a></li></ul></li><li><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#vscode-集成-stylelint" class="sidebar-link">VSCode 集成 Stylelint</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#git-代码预检" class="sidebar-link">Git 代码预检</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#什么是-git-hook" class="sidebar-link">什么是 git hook</a></li><li class="sidebar-sub-header"><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#lint-staged-只-lint-改动代码" class="sidebar-link">lint-staged 只 Lint 改动代码</a></li><li class="sidebar-sub-header"><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#几点建议" class="sidebar-link">几点建议</a></li></ul></li><li><a href="/technology/%E4%BB%8E%E9%9B%B6%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AFLint%E5%B7%A5%E4%BD%9C%E6%B5%81.html#拓展示例" class="sidebar-link">拓展示例</a><ul class="sidebar-sub-headers"></ul></li></ul></div></li></ul> </div> <div class="page"> <div class="content"><h2 id="lint-工作流"><a href="#lint-工作流" class="header-anchor">#</a> Lint 工作流</h2> <ul><li>eslint prettier stylelint husky lint-staged typescript eslint-config-alloy</li></ul> <h3 id="选择性阅读"><a href="#选择性阅读" class="header-anchor">#</a> 选择性阅读</h3> <ul><li>新手建议从头开始，都是手把手，按步骤配置一遍</li> <li>有 ESLint 使用经验的，直接上 AlloyTeam 配置</li> <li>让 ESLint 检查 TypeScript</li> <li>VSCode 集成 ESLint 检查 =&gt; 自动提示/修复错误</li> <li>结合 Prettier =&gt; 格式化文件</li> <li>继续集成 Stylelint =&gt; 检查样式</li> <li>本地 Lint 已构建，缺少 Git 提交代码预检</li></ul> <h3 id="什么是代码检查"><a href="#什么是代码检查" class="header-anchor">#</a> 什么是代码检查</h3> <ul><li>代码检查主要是用来发现代码错误、统一代码风格。</li> <li>在 JavaScript 项目中，我们一般使用 ESLint 来进行代码检查，它通过插件化的特性极大的丰富了适用范围，搭配 typescript-eslint 之后，甚至可以用来检查 TypeScript 代码。</li></ul> <h2 id="配置eslint"><a href="#配置eslint" class="header-anchor">#</a> 配置ESLint</h2> <h3 id="小试牛刀"><a href="#小试牛刀" class="header-anchor">#</a> 小试牛刀</h3> <p>1、新建一个文件夹，打开命令行，<code>npm init \-y</code>创建<code>package.json</code>
+2、安装依赖<code>npm install --save-dev eslint babel-eslint eslint-config-alloy</code>
+3、在项目根目录下创建一个<code>.eslintrc.js</code> 或 <code>.eslintrc.json</code>的配置文件：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// .eslintrc.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">extends</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">'alloy'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>4、在项目根目录下创建一个index.js，复制下面内容：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> myName <span class="token operator">=</span> <span class="token string">'Tom'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">My name is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>myNane<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>5、在命令行输入npx eslint index.js</p> <div class="language-bash extra-class"><pre class="language-bash"><code>// eslint 报错信息：
+✖ <span class="token number">2</span> problems <span class="token punctuation">(</span><span class="token number">2</span> errors, <span class="token number">0</span> warnings<span class="token punctuation">)</span>
+error  Unexpected var, use <span class="token builtin class-name">let</span> or const instead  no-var
+error  <span class="token string">'myNane'</span> is not defined                   no-undef
+</code></pre></div><p>6、使用<code>npx eslint index.js --fix</code>自动修复某些规则</p> <div class="language-bash extra-class"><pre class="language-bash"><code>// 这时 var 变成了 <span class="token builtin class-name">let</span>
+// 还剩下一个无法自动修复的错误
+✖ <span class="token number">1</span> problem <span class="token punctuation">(</span><span class="token number">1</span> error, <span class="token number">0</span> warnings<span class="token punctuation">)</span>
+error  <span class="token string">'myNane'</span> is not defined  no-undef
+</code></pre></div><h3 id="配合-typescript"><a href="#配合-typescript" class="header-anchor">#</a> 配合 TypeScript</h3> <p>1、由于 ESLint 默认使用 Espree 进行语法解析，无法识别 TypeScript 的一些语法，故我们需要安装 @typescript-eslint/parser，替代掉默认的解析器，别忘了同时安装 typescript：</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> --save-dev typescript @typescript-eslint/parser
+</code></pre></div><p>2、接下来需要安装对应的插件 @typescript-eslint/eslint-plugin 它作为 eslint 默认规则的补充，提供了一些额外的适用于 ts 语法的规则。</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> --save-dev @typescript-eslint/eslint-plugin
+</code></pre></div><p>3、修改配置文件</p> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">extends</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">'alloy'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    parser<span class="token operator">:</span> <span class="token string">'@typescript-eslint/parser'</span><span class="token punctuation">,</span>
+    plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'@typescript-eslint'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    rules<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 禁止使用 var</span>
+        <span class="token string">'no-var'</span><span class="token operator">:</span> <span class="token string">&quot;error&quot;</span><span class="token punctuation">,</span>
+        <span class="token comment">// 优先使用 interface 而不是 type</span>
+        <span class="token string">'@typescript-eslint/consistent-type-definitions'</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">&quot;error&quot;</span><span class="token punctuation">,</span>
+            <span class="token string">&quot;interface&quot;</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>以上配置中，我们自定义了两个规则，其中 no-var是 ESLint 原生的规则（我们刚刚已经用到了这个规则，它被包含在alloy中，此处会覆盖），@typescript-eslint/consistent-type-definitions 是 @typescript-eslint/eslint-plugin 新增的规则</li> <li>规则的取值一般是一个数组（上例中的 @typescript-eslint/consistent-type-definitions），其中第一项是 off、warn 或 error 中的一个，表示关闭、警告和报错。后面的项都是该规则的其他配置。</li> <li>如果没有其他配置的话，则可以将规则的取值简写为数组中的第一项（上例中的 no-var）。</li></ul> <blockquote><p>关闭、警告和报错的含义如下：</p></blockquote> <ul><li>关闭：禁用此规则</li> <li>警告：代码检查时输出错误信息，但是不会影响到 exit code</li> <li>报错：发现错误时，不仅会输出错误信息，而且 exit code 将被设为 1（一般 exit code 不为 0 则表示执行出现错误）</li></ul> <p>4、新建index.ts文件：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> myName <span class="token operator">=</span> <span class="token string">'Tom'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">My name is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>myNane<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">My name is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>myName<span class="token punctuation">.</span><span class="token function">toStrng</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+type Foo <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>5、在命令行输入npx eslint index.ts，如下可以看到报错信息以及可修复项</p> <div class="language-bash extra-class"><pre class="language-bash"><code>  <span class="token number">1</span>:1   error  Unexpected var, use <span class="token builtin class-name">let</span> or const instead  no-var
+  <span class="token number">2</span>:27  error  <span class="token string">'myNane'</span> is not defined                   no-undef
+  <span class="token number">4</span>:6   error  Use an <span class="token variable"><span class="token variable">`</span>interface<span class="token variable">`</span></span> instead of a <span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">type</span><span class="token variable">`</span></span>    @typescript-eslint/consistent-type-definitions
+
+✖ <span class="token number">3</span> problems <span class="token punctuation">(</span><span class="token number">3</span> errors, <span class="token number">0</span> warnings<span class="token punctuation">)</span>
+  <span class="token number">2</span> errors and <span class="token number">0</span> warnings potentially fixable with the <span class="token variable"><span class="token variable">`</span>--fix<span class="token variable">`</span></span> option.
+</code></pre></div><h3 id="脚本命令检查整个项目"><a href="#脚本命令检查整个项目" class="header-anchor">#</a> 脚本命令检查整个项目</h3> <p>1、根目录新建一个src文件夹，将我们的index.js和index.ts放进去
+2、在package.json中的scripts新增：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token punctuation">{</span>
+    <span class="token string">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 因为eslint不是全局安装的，所以要使用npx</span>
+        <span class="token string">&quot;lint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;npx eslint src --ext .js,.ts,tsx&quot;</span>
+        <span class="token comment">// eslint 默认不会检查 .ts 后缀的文件，所以需要加上参数 --ext .ts</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>3、然后<code>npm run lint</code>就可以看到<code>src</code>下所有指定后缀文件的报错信息</p> <h3 id="推荐使用-alloyteam-的配置"><a href="#推荐使用-alloyteam-的配置" class="header-anchor">#</a> 推荐使用 AlloyTeam 的配置</h3> <p>上面手把手完成了ESLint的配置过程
+有一定经验的推荐直接使用<code>AlloyTeam</code>实现可自定义拓展的<code>ESLint</code>规则
+<code>AlloyTeam/eslint-config-alloy</code>已经帮我们集成了各种技术栈
+1、安装技术栈相关依赖</p> <div class="language-bash extra-class"><pre class="language-bash"><code>// Eslint
+<span class="token function">npm</span> <span class="token function">install</span> --save-dev eslint babel-eslint eslint-config-alloy
+// React
+<span class="token function">npm</span> <span class="token function">install</span> --save-dev eslint babel-eslint eslint-plugin-react eslint-config-alloy
+// Vue
+<span class="token function">npm</span> <span class="token function">install</span> --save-dev eslint babel-eslint vue-eslint-parser eslint-plugin-vue eslint-config-alloy
+// TypeScript
+<span class="token function">npm</span> <span class="token function">install</span> --save-dev eslint typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-config-alloy
+// TypeScript React
+<span class="token function">npm</span> <span class="token function">install</span> --save-dev eslint typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-react eslint-config-alloy
+</code></pre></div><p>2、配置.eslintrc.js文件</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">/* .eslintrc.js */</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">extends</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">'alloy'</span><span class="token punctuation">,</span> <span class="token comment">// 都需要</span>
+        <span class="token string">'alloy/vue'</span><span class="token punctuation">,</span> <span class="token comment">//vue项目需要</span>
+        <span class="token string">'alloy/react'</span><span class="token punctuation">,</span> <span class="token comment">//react项目需要</span>
+        <span class="token string">'alloy/typescript'</span><span class="token punctuation">,</span> <span class="token comment">//ts项目需要</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    env<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 你的环境变量（包含多个预定义的全局变量）</span>
+        <span class="token comment">//</span>
+        <span class="token comment">// browser: true,</span>
+        <span class="token comment">// node: true,</span>
+        <span class="token comment">// mocha: true,</span>
+        <span class="token comment">// jest: true,</span>
+        <span class="token comment">// jquery: true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    globals<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 你的全局变量（设置为 false 表示它不允许被重新赋值）</span>
+        <span class="token comment">//</span>
+        <span class="token comment">// myGlobal: false</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    rules<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 自定义你的规则</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>3、接下来就可以直接用eslint命令检查文件了
+4、这样就引入了alloy团队的lint规则了，然后可以用rules覆盖你不爽的规则，直接采用开源规则是为了避免重复造轮子，你也可以选择别的团队，或者自己定义一套</p> <h2 id="vscode-集成-eslint-检查"><a href="#vscode-集成-eslint-检查" class="header-anchor">#</a> VSCode 集成 ESLint 检查</h2> <blockquote><p>在编辑器中集成 ESLint 检查，可以在开发过程中就发现错误，甚至可以在保存时自动修复错误，极大的增加了开发效率</p></blockquote> <p>1、先安装 ESLint 插件，打开 VSCode 点击「扩展」按钮，搜索 ESLint，然后安装即可
+2、在「文件 =&gt; 首选项 =&gt; 设置 =&gt; 工作区」中（也可以在项目根目录下创建一个配置文件 .vscode/settings.json），添加以下配置：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token punctuation">{</span>
+    <span class="token comment">// VSCode 中的 ESLint 插件默认是不会检查 `.vue`、`.ts` 或 `.tsx` 后缀的</span>
+    <span class="token string">&quot;eslint.validate&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">&quot;javascript&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;javascriptreact&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;vue&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;typescript&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;typescriptreact&quot;</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token comment">// 开启保存时自动修复</span>
+    <span class="token string">&quot;editor.codeActionsOnSave&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;source.fixAll.eslint&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// 指定VSCode用于IntelliSense（智能感知）的ts版本，将内置版本更换为工作区版本</span>
+    <span class="token string">&quot;typescript.tsdk&quot;</span><span class="token operator">:</span> <span class="token string">&quot;node_modules/typescript/lib&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="结合-prettier-使用"><a href="#结合-prettier-使用" class="header-anchor">#</a> 结合 Prettier 使用</h3> <p>Prettier 是一个代码格式化工具，相比于 ESLint 中的代码格式规则，它提供了更少的选项，但是却更加专业。
+AlloyTeam 推荐用 Prettier 管理格式化相关的规则，用 ESLint 来检查它更擅长的逻辑错误。</p> <p>配置 Prettier
+1、安装 Prettier,并在vscode安装prettier</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> --save-dev prettier
+</code></pre></div><p>2、配置 .prettierrc.js 仅供参考：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// .prettierrc.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 一行最多 100 字符</span>
+    printWidth<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    <span class="token comment">// 使用 4 个空格缩进</span>
+    tabWidth<span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+    <span class="token comment">// 不使用缩进符，而使用空格</span>
+    useTabs<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token comment">// 行尾需要有分号</span>
+    semi<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token comment">// 使用单引号</span>
+    singleQuote<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token comment">// 对象的 key 仅在必要时用引号</span>
+    quoteProps<span class="token operator">:</span> <span class="token string">'as-needed'</span><span class="token punctuation">,</span>
+    <span class="token comment">// jsx 不使用单引号，而使用双引号</span>
+    jsxSingleQuote<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token comment">// 末尾不需要逗号</span>
+    trailingComma<span class="token operator">:</span> <span class="token string">'none'</span><span class="token punctuation">,</span>
+    <span class="token comment">// 大括号内的首尾需要空格</span>
+    bracketSpacing<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token comment">// jsx 标签的反尖括号需要换行</span>
+    jsxBracketSameLine<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token comment">// 箭头函数，只有一个参数的时候，也需要括号</span>
+    arrowParens<span class="token operator">:</span> <span class="token string">'always'</span><span class="token punctuation">,</span>
+    <span class="token comment">// 每个文件格式化的范围是文件的全部内容</span>
+    rangeStart<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    rangeEnd<span class="token operator">:</span> <span class="token number">Infinity</span><span class="token punctuation">,</span>
+    <span class="token comment">// 不需要写文件开头的 @prettier</span>
+    requirePragma<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token comment">// 不需要自动在文件开头插入 @prettier</span>
+    insertPragma<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token comment">// 使用默认的折行标准</span>
+    proseWrap<span class="token operator">:</span> <span class="token string">'preserve'</span><span class="token punctuation">,</span>
+    <span class="token comment">// 根据显示样式决定 html 要不要折行</span>
+    htmlWhitespaceSensitivity<span class="token operator">:</span> <span class="token string">'css'</span><span class="token punctuation">,</span>
+    <span class="token comment">// 换行符使用 lf</span>
+    endOfLine<span class="token operator">:</span> <span class="token string">'lf'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="vscode-集成-prettier"><a href="#vscode-集成-prettier" class="header-anchor">#</a> VSCode 集成 Prettier</h3> <p>1、在.vscode/settings.json中添加配置：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token punctuation">{</span>
+    <span class="token comment">// 保存时自动格式化所有支持文件 javascript/javascriptreact/typescript/typescriptreact/json/graphql</span>
+    <span class="token string">&quot;editor.formatOnSave&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;editor.defaultFormatter&quot;</span><span class="token operator">:</span> <span class="token string">&quot;esbenp.prettier-vscode&quot;</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>2、这时我们保存文件的时候，已经可以自动格式化了
+3、也可以指定格式化文件类型：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token punctuation">{</span>
+    <span class="token comment">// Set the default</span>
+    <span class="token string">&quot;editor.formatOnSave&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token comment">// Enable per-language</span>
+    <span class="token string">&quot;[javascript]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;editor.defaultFormatter&quot;</span><span class="token operator">:</span> <span class="token string">&quot;esbenp.prettier-vscode&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;editor.formatOnSave&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="继续集成-stylelint"><a href="#继续集成-stylelint" class="header-anchor">#</a> 继续集成 Stylelint</h2> <blockquote><p>顾名思义，Stylelint帮我们解决类css文件样式问题</p></blockquote> <p>Stylelint 规则分为三个类别</p> <ul><li>Possible errors：可以使用stylelint-config-recommended启用这些规则</li> <li>Stylistic issues：stylelint-config-standard拓展了Possible errors，并启用此类的规则</li> <li>Limit language features：其他规则，如果有需要，可以在rules里面配置
+详尽的配置规则</li></ul> <h4 id="stylelint-配置"><a href="#stylelint-配置" class="header-anchor">#</a> Stylelint 配置</h4> <p>1、安装依赖,并在插件市场安装stylelint插件</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> --save-dev stylelint stylelint-config-standard stylelint-order
+</code></pre></div><p>2、在项目根目录中创建一个.stylelintrc.js配置文件：</p> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">extends</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">'stylelint-config-standard'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'stylelint-order'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    rules<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token comment">// ...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p><code>stylelint-config-standard</code>是<code>stylelint</code>的推荐配置
+<code>stylelint-order</code>是 <code>css</code>属性排序插件
+3、<code>npx stylelint &quot;**/*.css&quot;</code> 尝试检查 css 文件
+4、<code>npx stylelint &quot;**/*.css&quot; fix</code> 自动修复css文件</p> <h3 id="支持-scss"><a href="#支持-scss" class="header-anchor">#</a> 支持 SCSS</h3> <p>1、安装依赖</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> --save-dev stylelint-config-sass-guidelines stylelint-scss
+</code></pre></div><p>2、调整.stylelintrc.js配置文件：</p> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">extends</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">'stylelint-config-standard'</span><span class="token punctuation">,</span>
+        <span class="token string">'stylelint-config-sass-guidelines'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'stylelint-order'</span><span class="token punctuation">,</span> <span class="token string">'stylelint-scss'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    rules<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token comment">// ...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>3、更多配置及插件</p> <h2 id="vscode-集成-stylelint"><a href="#vscode-集成-stylelint" class="header-anchor">#</a> VSCode 集成 Stylelint</h2> <p>1、在.vscode/settings.json中添加配置：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token punctuation">{</span>
+    <span class="token string">&quot;editor.codeActionsOnSave&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+         <span class="token comment">// 开启保存自动修复所有stylelint可修复的选项</span>
+        <span class="token string">&quot;source.fixAll.stylelint&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>2、这时我们保存文件的时候，Stylelint已经可以自动修复，但是我们上面让<code>Prettier</code>负责了所有文件的格式化，因此可能会导致冲突，倒腾了好久VSCode配置项，效果并不好，比如去除了 <code>css</code> 等文件的格式化，到<code>.vue</code>内联<code>style</code>依然有问题</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token punctuation">{</span>
+    <span class="token comment">// 去除其他插件</span>
+    <span class="token string">&quot;css.validate&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;less.validate&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;scss.validate&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token comment">// 编辑器格式化全部交给 Prettiern 配置</span>
+    <span class="token string">&quot;editor.formatOnSave&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;editor.defaultFormatter&quot;</span><span class="token operator">:</span> <span class="token string">&quot;esbenp.prettier-vscode&quot;</span><span class="token punctuation">,</span>
+    <span class="token comment">// 针对某种语言，配置替代编辑器设置，取消自动保存格式化</span>
+    <span class="token string">&quot;[css]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;editor.formatOnSave&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;[less]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;editor.formatOnSave&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;[scss]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;editor.formatOnSave&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>3、如上还是会有问题，换个思路，让Stylelint禁用所有与Prettiern有关的规则，很符合我们整篇文章「各司其职」的思想
+4、安装依赖npm install --save-dev stylelint-config-prettier
+5、调整.stylelintrc.js配置文件：</p> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">extends</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">'stylelint-config-standard'</span><span class="token punctuation">,</span>
+        <span class="token string">'stylelint-config-sass-guidelines'</span><span class="token punctuation">,</span>
+        <span class="token string">'stylelint-config-prettier'</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'stylelint-order'</span><span class="token punctuation">,</span> <span class="token string">'stylelint-scss'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    rules<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token comment">// ...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>6、至此，我们让Prettiern负责格式化，让Stylelint检查样式，让ESLint检查语法逻辑，完成了整个前端 Lint 工作流</p> <h2 id="git-代码预检"><a href="#git-代码预检" class="header-anchor">#</a> Git 代码预检</h2> <ul><li>上面我们配置了ESLint、Prettier、Stylelint集成了VSCode插件，实现了错误提示和保存自动修复</li> <li>然而自动修复的只是小部分，如果团队成员不按规范，依然可以将不规范的代码推送至远程代码库</li> <li>我们通过Git 代码预检，一定程度防止不规范的代码被提交</li></ul> <h4 id="实现过程"><a href="#实现过程" class="header-anchor">#</a> 实现过程</h4> <ol><li>待提交的代码</li> <li>git add 添加到暂存区</li> <li>执行 git commit（这时进行代码预检）</li> <li>husky注册在git pre-commit的钩子调起 lint-staged</li> <li>lint-staged 取得所有被提交的文件依次执行写好的任务</li> <li>如果有错误（没通过ESlint检查）则停止任务，等待下次commit，同时打印错误信息</li> <li>成功提交后，git push推送到远程库</li></ol> <h3 id="什么是-git-hook"><a href="#什么是-git-hook" class="header-anchor">#</a> 什么是 git hook</h3> <p><code>git hook</code>就是<code>.git</code>文件夹的<code>hooks</code>下的一些钩子函数，特定时机他们将被调用
+查看所有 git 钩子函数：</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token builtin class-name">cd</span> .git/hooks
+<span class="token function">ls</span> -l
+// 打印如下：
+total <span class="token number">96</span>
+-rwxr-xr-x  <span class="token number">1</span> zzc  staff   <span class="token number">478</span> <span class="token number">10</span> <span class="token number">21</span>  <span class="token number">2019</span> applypatch-msg.sample
+-rwxr-xr-x  <span class="token number">1</span> zzc  staff   <span class="token number">896</span> <span class="token number">10</span> <span class="token number">21</span>  <span class="token number">2019</span> commit-msg.sample
+-rwxr-xr-x  <span class="token number">1</span> zzc  staff  <span class="token number">3327</span> <span class="token number">10</span> <span class="token number">21</span>  <span class="token number">2019</span> fsmonitor-watchman.sample
+-rwxr-xr-x  <span class="token number">1</span> zzc  staff   <span class="token number">189</span> <span class="token number">10</span> <span class="token number">21</span>  <span class="token number">2019</span> post-update.sample
+-rwxr-xr-x  <span class="token number">1</span> zzc  staff   <span class="token number">424</span> <span class="token number">10</span> <span class="token number">21</span>  <span class="token number">2019</span> pre-applypatch.sample
+-rwxr-xr-x  <span class="token number">1</span> zzc  staff  <span class="token number">1638</span> <span class="token number">10</span> <span class="token number">21</span>  <span class="token number">2019</span> pre-commit.sample
+-rwxr-xr-x  <span class="token number">1</span> zzc  staff  <span class="token number">1348</span> <span class="token number">10</span> <span class="token number">21</span>  <span class="token number">2019</span> pre-push.sample
+-rwxr-xr-x  <span class="token number">1</span> zzc  staff  <span class="token number">4898</span> <span class="token number">10</span> <span class="token number">21</span>  <span class="token number">2019</span> pre-rebase.sample
+-rwxr-xr-x  <span class="token number">1</span> zzc  staff   <span class="token number">544</span> <span class="token number">10</span> <span class="token number">21</span>  <span class="token number">2019</span> pre-receive.sample
+-rwxr-xr-x  <span class="token number">1</span> zzc  staff  <span class="token number">1492</span> <span class="token number">10</span> <span class="token number">21</span>  <span class="token number">2019</span> prepare-commit-msg.sample
+-rwxr-xr-x  <span class="token number">1</span> zzc  staff  <span class="token number">3610</span> <span class="token number">10</span> <span class="token number">21</span>  <span class="token number">2019</span> update.sample
+</code></pre></div><ul><li><code>.sample</code>为各个钩子的案例脚本，可以把<code>sample</code>去掉，直接编写<code>shell</code>脚本来执行。</li> <li>而前端可以用插件husky与pre-commit，来使钩子生效。</li></ul> <h4 id="husky-注册-git-hook"><a href="#husky-注册-git-hook" class="header-anchor">#</a> husky 注册 git hook</h4> <blockquote><p>Requires Node &gt;= 10 and Git &gt;= 2.13.0.</p></blockquote> <ul><li><code>husky</code>新老版本的配置方式和使用变化较大，老版本请自行升级，详见 husky</li></ul> <p>1、安装 husky</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> husky --save-dev
+</code></pre></div><p>2、编辑 package.json 文件：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token punctuation">{</span>
+    <span class="token string">&quot;husky&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;hooks&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token string">&quot;pre-commit&quot;</span><span class="token operator">:</span> <span class="token string">&quot;eslint src/**/*.js&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>3、尝试 <code>git commit</code> 提交，就会先执行<code>eslint src/**/*.js</code>，代码没有问题才会被真正提交
+4、这样每次提交代码，eslint都会检查所有文件，如果报错过多，一定会崩溃</p> <h3 id="lint-staged-只-lint-改动代码"><a href="#lint-staged-只-lint-改动代码" class="header-anchor">#</a> lint-staged 只 Lint 改动代码</h3> <blockquote><p>lint-staged requires Node.js version 10.13.0 or later.</p></blockquote> <ul><li>v10.0.0 以后对原始暂存文件的任何新修改都将自动添加到提交中。如果您的任务以前包含一个git add步骤，请删除此步骤，同时运行多个git操作通常会导致错误，详见 lint-staged</li></ul> <p>1、安装 lint-staged</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> lint-staged --save-dev
+</code></pre></div><p>2、新增 package.json 配置：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token punctuation">{</span>
+    <span class="token string">&quot;lint-staged&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;src/**/*.js&quot;</span><span class="token operator">:</span> <span class="token string">&quot;eslint&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>3、如此husky只负责注册git hook，后续操作交给lint-staged，只对改动的文件执行任务，而且可以很方便
+地配置多条命令：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token punctuation">{</span>
+    <span class="token string">&quot;husky&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;hooks&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token string">&quot;pre-commit&quot;</span><span class="token operator">:</span> <span class="token string">&quot;lint-staged&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;lint-staged&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;src/**/*.js&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;eslint --fix&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;prettier --write&quot;</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>4、如上，我们提交代码之前，程序会自动修复<code>eslint</code>配置，格式化<code>prettier</code>配置</p> <h3 id="几点建议"><a href="#几点建议" class="header-anchor">#</a> 几点建议</h3> <ul><li>建议代码提交只做检查和测试，拦截问题代码比较好，还是在保存时，自动修复<code>eslint、prettier</code>配置，而且大部分还需要手动修复才行</li> <li>实在紧急，也可通过<code>git commit -m -n</code> &quot;跳过代码代码预检&quot;跳过检查，慎用</li> <li>和构建有关的包建议使用<code>--save-dev</code>安装在项目内部</li> <li>使用<code>VSCode</code>打开项目，<code>path</code>不要嵌套过深，可能导致<code>Lint</code>工具失效</li> <li>老版本<code>husky lint-staged</code>配置都放在<code>package.json</code>中，现在<code>eslint prettier husky lint-staged</code>都支持多种后缀配置文件，建议采用<code>.js</code>统一格式，也方便拓展：</li></ul> <h4 id="统一配置文件格式"><a href="#统一配置文件格式" class="header-anchor">#</a> 统一配置文件格式</h4> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// .eslintrc.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">extends</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">'alloy'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// .prettierrc.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 一行最多 100 字符</span>
+    printWidth<span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    <span class="token comment">// 使用 4 个空格缩进</span>
+    tabWidth<span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// .huskyrc.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'hooks'</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'pre-commit'</span><span class="token operator">:</span> <span class="token string">&quot;lint-staged&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// .lintstagedrc.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">&quot;src/**/*.{js,ts}&quot;</span><span class="token operator">:</span> <span class="token string">&quot;eslint&quot;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// .stylelintrc.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">extends</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">'stylelint-config-standard'</span><span class="token punctuation">,</span>
+        <span class="token string">'stylelint-config-sass-guidelines'</span><span class="token punctuation">,</span>
+        <span class="token string">'stylelint-config-prettier'</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    plugins<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'stylelint-order'</span><span class="token punctuation">,</span> <span class="token string">'stylelint-scss'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    rules<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token comment">// ...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="拓展示例"><a href="#拓展示例" class="header-anchor">#</a> 拓展示例</h2> <ul><li><code>.huskyrc.js</code></li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code>// 数组方式配置多条命令
+const tasks <span class="token operator">=</span> arr <span class="token operator">=</span><span class="token operator">&gt;</span> arr.join<span class="token punctuation">(</span><span class="token string">' &amp;&amp; '</span><span class="token punctuation">)</span>
+module.exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">'hooks'</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+    <span class="token string">'pre-commit'</span><span class="token builtin class-name">:</span> tasks<span class="token punctuation">(</span><span class="token punctuation">[</span>
+      <span class="token string">'npm run lint'</span>,
+      <span class="token string">'npm test'</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li><code>.lintstagedrc.js</code></li></ul> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 如果超过10个暂存文件，则在整个存储库上运行eslint</span>
+    <span class="token string">'**/*.js?(x)'</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">filenames</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+    filenames<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">10</span> <span class="token operator">?</span> <span class="token string">'eslint .'</span> <span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">eslint </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>filenames<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token string">&quot;*.css&quot;</span><span class="token operator">:</span> <span class="token string">&quot;stylelint&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;*.scss&quot;</span><span class="token operator">:</span> <span class="token string">&quot;stylelint --syntax=scss&quot;</span><span class="token punctuation">,</span>
+    <span class="token comment">// 对ts文件运行tsc，但不传递任何参数</span>
+    <span class="token string">'**/*.ts?(x)'</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token string">'tsc -p tsconfig.json --noEmit'</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>转自<a href="https://segmentfault.com/a/1190000022881634" target="_blank" rel="noopener noreferrer">https://segmentfault.com/a/1190000022881634<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/assets/js/app.e45c2cda.js" defer></script><script src="/assets/js/66.0fb2160f.js" defer></script>
+  </body>
+</html>
